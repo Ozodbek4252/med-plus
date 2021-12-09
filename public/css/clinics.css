@@ -1,0 +1,48 @@
+.clinics-search-div {
+  width: 100%;
+  min-height: 40px;
+  background-color: #178066;
+  color: #fff;
+  padding: 40px;
+  border-radius: 5px;
+}
+
+.clinics-search-form {
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.search-input {
+	width: 86%;
+	height: 40px;
+	outline: none;
+	border: none;
+	font-size: 16px;
+	border-radius: 2px;
+	border: 1px solid #e8e8e8;
+	padding: 0 10px;
+	color: #000 !important;
+}
+
+.clinics-search-button {
+	background-color: #fff;
+	width: 12%;
+	height: 40px;
+	outline: none;
+	border: none;
+	font-size: 18px;
+	border-radius: 4px;
+	color: #178066;	
+}
+
+
+
+
+
+
+
+
+
+
+
