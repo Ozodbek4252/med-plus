@@ -13,7 +13,7 @@ class ClinicsController extends Controller
     	$search_text = $_GET['clinics-search'];
 
     	// temporary getting users
-    	$data = user::where('name', 'LIKE', '%'.$search_text.'%')->get();
+    	$data = user::where('first_name', 'LIKE', '%'.$search_text.'%')->get();
     	
     	// for($e=0; $e<count($data);$e++){
     	// 	if($data[$e]->name=='admin'){

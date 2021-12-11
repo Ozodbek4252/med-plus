@@ -39,12 +39,12 @@
                         </thead>
 
                         @foreach($data as $data)
-                        @if($data->name!="admin")
+                        @if($data->usertype!="1")
                         <tbody>
                           <tr>
                             <td>{{$num++}}</td>
                             <!-- <td>{{$data->id}}</td> -->
-                            <td>{{$data->name}}</td>
+                            <td>{{$data->first_name}}</td>
                             <td>{{$data->email}}</td>
                             <td><a href="{{url('/deleteuser', $data->id)}}">Delete</a></td>
                           </tr>
