@@ -1,15 +1,25 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
+        <div style="display: flex; justify-content: space-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                <a href="{{url('/')}}">
+                    {{ __('Back Home') }}
+                </a>
+            </h2>
+            <div>
+                <a href="" class="bg-blue-500 hover:bg-blue-500 
+                text-blue-700 font-semibold hover:text-white py-2 
+                px-4 border border-blue-500 hover:border-transparent rounded">View Clinics</a>
+                <a href="{{url('/completeaccount')}}" class="bg-transparent hover:bg-blue-500 
+                text-blue-700 font-semibold hover:text-white py-2 
+                px-4 border border-blue-500 hover:border-transparent rounded">Complete Account</a>
+            </div>
+        </div>
     </x-slot>
-
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
-
                 <x-jet-section-border />
             @endif
 

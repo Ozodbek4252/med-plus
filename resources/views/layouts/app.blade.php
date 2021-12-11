@@ -15,8 +15,17 @@
 
         @livewireStyles
 
+        <style type="text/css">
+            @media (max-width: 700px) {
+                .complete-name-div {
+                    width: 100%;
+                }
+            }
+        </style>
+
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
