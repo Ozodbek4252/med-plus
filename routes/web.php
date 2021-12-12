@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/users', [AdminController::class, "users"]);
 Route::get('/deleteuser/{id}', [AdminController::class, "deleteuser"]);
+Route::get('/role/{id}', [AdminController::class, "role"]);
 
 
 
@@ -36,7 +37,7 @@ Route::get('/deleteuser/{id}', [AdminController::class, "deleteuser"]);
 
 Route::get('/clinics', [HomeController::class, "clinics"]);
 // Route::get('/profile/{id}', [ProfileController::class, "profile"]);
-Route::get('/completeaccount', [ProfileController::class, "completeaccount"]);
+Route::get('/completeaccount/{id}', [ProfileController::class, "completeaccount"]);
 Route::post('/updatecompleteaccount/{id}', [ProfileController::class, "updatecompleteaccount"]);
 
 

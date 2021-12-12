@@ -20,8 +20,6 @@
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             
 
-
-
     	<form class="w-full max-w-lg"  action="{{url('/updatecompleteaccount', Auth::user()->id)}}" method="post" enctype="multipart/form-data">
     		@csrf
           <div style="display: flex; justify-content: space-between; width: 100%" class="flex flex-wrap -mx-3 mb-4">
@@ -77,6 +75,7 @@
               </label>
               <div class="relative">
                 <select name="state" class="block appearance-none w-full bg-gray-200 border border-gray-500 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                  <option>Select</option>
                   <option value="Toshkent">Toshkent</option>
                   <option value="Farg'ona">Farg'ona</option>
                   <option value="Andijon">Andijon</option>
@@ -98,13 +97,11 @@
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                 Shahar / Tuman
               </label>
-              <input name="city" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Angren">
+
+              <input value="{{$address->city}}" name="city" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Angren">
             </div>
-
           </div>
-
-
-
+          
         <div style="display: flex; width: 100%;" class=" flex-wrap -mx-3 mb-2 px-3">
         	<div style="width: 50%;" class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
         	  <label style="width: 50%;" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="">
@@ -130,7 +127,7 @@
           	<label style="width: 50%;" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-date">
                 Date Of Birth
             </label>
-            <input name="date_of_birth" type="date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-date">
+            <input value="{{Auth::user()->date_of_birth}}" name="date_of_birth" type="date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-date">
           </div>
 
 
