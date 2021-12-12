@@ -19,7 +19,7 @@
   	<div class="container-fluid page-body-wrapper">
         @include("admin.navbar");
 
-        <div style="padding-top: 65px; position: relative; top: 60px; left: 100px">
+        <div style="padding-top: 65px; position: relative; top: 60px;">
           <div class="col-lg-12 grid-margin stretch-card">
 
                 <div class="card">
@@ -28,29 +28,42 @@
                     </p>
                     <div class="table-responsive">
                       <table class="table table-dark">
+
                         <thead>
                           <tr>
                             <th> # </th>
-                            <!-- <th> Id </th> -->
-                            <th> First name </th>
-                            <th> Amount </th>
-                            <th> Deadline </th>
+                            <th> First Name </th>
+                            <th> Last Name </th>
+                            <th> Phone </th>
+                            <th> Email </th>
+                            <th> Gender </th>
+                            <th> Address </th>
+                            <th> Date Of Birth </th>
+                            <th> Action </th>
+                            <th> Role </th>
                           </tr>
                         </thead>
 
-                        @foreach($data as $data)
-                        @if($data->usertype!="1")
+                        @for ($i=0; $i<count($data); $i++)
+                        @if($data[$i]->usertype!="1")
                         <tbody>
                           <tr>
                             <td>{{$num++}}</td>
-                            <!-- <td>{{$data->id}}</td> -->
-                            <td>{{$data->first_name}}</td>
-                            <td>{{$data->email}}</td>
-                            <td><a href="{{url('/deleteuser', $data->id)}}">Delete</a></td>
+                            <td>{{$data[$i]->first_name}}</td>
+                            <td>{{$data[$i]->last_name}}</td>
+                            <td>{{$data[$i]->phone}}</td>
+                            <td>{{$data[$i]->email}}</td>
+                            <td>{{$data[$i]->gender}}</td>
+
+                            <td>{{$address[0]->state}}</td> <!-- need action -->
+
+                            <td>{{$data[$i]->date_of_birth}}</td>
+                            <td><a href="{{url('/deleteuser', $data[$i]->id)}}">Delete</a></td>
+                            <td><a href="{{url('/role', $data[$i]->id)}}">Role</a></td>
                           </tr>
                         </tbody>
                         @endif
-                        @endforeach
+                        @endfor
 
                       </table>
                     </div>
