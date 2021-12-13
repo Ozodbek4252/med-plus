@@ -33,33 +33,35 @@
                 </p>
 
 
-                <form>
+                <form method="post" action="{{ url('/addrole', $data->id) }}">
+                  @csrf
+
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name" placeholder="Clinic Name" required="">
+                      <input name="name" type="text" class="form-control" id="name" placeholder="Clinic Name" required>
                     </div>
                     <div class="form-group col-md-6">
                       <label for="phone">Phone</label>
-                      <input type="text" class="form-control" id="phone" placeholder="+998 98 765 43 21" required="">
+                      <input name="phone" type="text" class="form-control" id="phone" placeholder="+998 98 765 43 21" required>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputAddress">Address</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Ko'cha">
+                    <label for="inputAddress">Address (optional)</label>
+                    <input name="street" type="text" class="form-control" id="inputAddress" placeholder="Ko'cha">
                   </div>
                   <div class="form-group">
-                    <label for="inputAddress2">Address 2</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    <label for="inputAddress2">Address 2 (optional)</label>
+                    <input name="apartment" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputCity">City</label>
-                      <input type="text" placeholder="Shahar / Tuman" required="" class="form-control" id="inputCity">
+                      <input name="city" type="text" placeholder="Shahar / Tuman" class="form-control" id="inputCity" required>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputState">State</label>
-                      <select required="" id="inputState" class="form-control">
+                      <select name="state" id="inputState" class="form-control" required>
                         <option selected>Choose...</option>
                         <option value="Toshkent">Toshkent</option>
                         <option value="Farg'ona">Farg'ona</option>
@@ -77,13 +79,10 @@
                       </select>
                     </div>
                     <div class="form-group col-md-2">
-                      <label for="inputZip">Zip</label>
-                      <input type="text" class="form-control" id="inputZip">
+                      <label for="inputZip">Zip (optional)</label>
+                      <input name="zip" type="text" class="form-control" id="inputZip">
                     </div>
                   </div>
-
-
-
 
                   <label for="inputState">Ish kunlari</label>
                   <table class="table table-dark">
@@ -92,7 +91,7 @@
                           <tr>
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
-                                <input class="form-check-input moncheck" type="checkbox" id="moncheck">
+                                <input name="mon" value="check" class="form-check-input moncheck" type="checkbox" id="moncheck">
                                 <label style="-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" class="form-check-label" for="moncheck">
                                   Monday
                                 </label>
@@ -115,7 +114,7 @@
                           <tr>
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
-                                <input class="form-check-input tuecheck" type="checkbox" id="tuecheck">
+                                <input name="tue" value="check" class="form-check-input tuecheck" type="checkbox" id="tuecheck">
                                 <label style="-webkit-touch-callout: none;-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none;  user-select: none;" class="form-check-label" for="tuecheck">
                                   Tuesday
                                 </label>
@@ -137,13 +136,8 @@
                           <tr>
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
-                                <input class="form-check-input wedcheck" type="checkbox" id="wedcheck">
-                                <label style="-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;" class="form-check-label" for="wedcheck">
+                                <input name="wed" value="check" class="form-check-input wedcheck" type="checkbox" id="wedcheck">
+                                <label style="-webkit-touch-callout: none;-webkit-user-select: none; -khtml-user-select:none;-moz-user-select: none;-ms-user-select: none;user-select: none;" class="form-check-label" for="wedcheck">
                                   Wednesday
                                 </label>
                               </div>
@@ -165,13 +159,8 @@
                           <tr>
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
-                                <input class="form-check-input thucheck" type="checkbox" id="thucheck">
-                                <label style="-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;" class="form-check-label" for="thucheck">
+                                <input name="thu" value="check" class="form-check-input thucheck" type="checkbox" id="thucheck">
+                                <label style="-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;" class="form-check-label" for="thucheck">
                                   Thursday
                                 </label>
                               </div>
@@ -190,13 +179,8 @@
                           <tr>
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
-                                <input class="form-check-input fricheck" type="checkbox" id="fricheck">
-                                <label style="-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;" class="form-check-label" for="fricheck">
+                                <input name="fri" value="check" class="form-check-input fricheck" type="checkbox" id="fricheck">
+                                <label style="-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;" class="form-check-label" for="fricheck">
                                   Friday
                                 </label>
                               </div>
@@ -215,13 +199,8 @@
                           <tr>
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
-                                <input class="form-check-input satcheck" type="checkbox" id="satcheck">
-                                <label style="-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;" class="form-check-label" for="satcheck">
+                                <input name="sat" value="check" class="form-check-input satcheck" type="checkbox" id="satcheck">
+                                <label style="-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;" class="form-check-label" for="satcheck">
                                   Saturday
                                 </label>
                               </div>
@@ -240,13 +219,8 @@
                           <tr>
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
-                                <input class="form-check-input suncheck" type="checkbox" id="suncheck">
-                                <label style="-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;" class="form-check-label" for="suncheck">
+                                <input name="sun" value="check" class="form-check-input suncheck" type="checkbox" id="suncheck">
+                                <label style="-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;" class="form-check-label" for="suncheck">
                                   Sunday
                                 </label>
                               </div>
@@ -265,44 +239,39 @@
                         </tbody>
                   </table>
 
-
-
-
                   <label style="margin-top: 20px;" for="inputState">Links</label>
-
                   <div class="form-row">
                     <div style="margin: 0;" class="form-group col-md-6" >
-                      <label class="link-label" for="link-fb">Facebook</label>
-                      <input id="link-fb" class="links-input" style="width: 100%" type="text" name="link-fb" placeholder="Paste facebook link...">
+                      <label class="link-label" for="link-email">Email</label>
+                      <input id="link-email" class="links-input" style="width: 100%" type="text" name="email" placeholder="Enter your email address...">
                       <label class="link-label" for="link-tg">Telegram</label>
-                      <input id="link-tg" class="links-input" style="width: 100%" type="text" name="link-tg" placeholder="Paste telegram link...">
+                      <input id="link-tg" class="links-input" style="width: 100%" type="text" name="tg" placeholder="Paste telegram link...">
                     </div>
                     <div class="form-group col-md-6">
+                      <label class="link-label" for="link-fb">Facebook</label>
+                      <input id="link-fb" class="links-input" style="width: 100%" type="text" name="fb" placeholder="Paste facebook link...">
                       <label class="link-label" for="link-insta">Instagram</label>
-                      <input id="link-insta" class="links-input" style="width: 100%" type="text" name="link-insta" placeholder="Paste instagram link...">
-                      <label class="link-label" for="link-twitter">Telegram</label>
-                      <input id="link-twitter" class="links-input" style="width: 100%" type="text" name="link-twitter" placeholder="Paste twitter link...">
+                      <input id="link-insta" class="links-input" style="width: 100%" type="text" name="insta" placeholder="Paste instagram link...">
                     </div>
                   </div>
 
                   <div>
                     <label for="logo">Logo</label>
-                    <input style="display: block;" type="file" id="logo" name="logo">
+                    <input name="logo" style="display: block;" type="file" id="logo" name="logo">
                   </div>
 
                   <div>
                     Map
                   </div>
 
-
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="gridCheck">
                       <label class="form-check-label" for="gridCheck">
                         Check me out
                       </label>
                     </div>
-                  </div>
+                  </div> -->
                   <button type="submit" class="btn btn-primary">Sign in</button>
                 </form>
 

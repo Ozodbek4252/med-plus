@@ -11,8 +11,10 @@ use App\Models\Address;
 class AdminController extends Controller
 {
     public function users()
-    {
-    	$data = user::all();
+    {        
+        // $posts = Post::latest()->with('user', 'likes')->paginate(10);
+        // $data = User::latest()->paginate(3);
+    	$data = User::all();
         $address = address::all();
     	$num = 1;
 
