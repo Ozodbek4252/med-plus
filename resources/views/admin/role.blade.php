@@ -87,23 +87,13 @@
 
                   <label for="inputState">Ish kunlari</label>
                   <table class="table table-dark">
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-
-
                         <tbody>
-
 
                           <tr>
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
                                 <input class="form-check-input moncheck" type="checkbox" id="moncheck">
-                                <label style="-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;" class="form-check-label" for="moncheck">
+                                <label style="-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" class="form-check-label" for="moncheck">
                                   Monday
                                 </label>
                               </div>
@@ -126,12 +116,7 @@
                             <td style="padding-top: 0; padding-bottom: 0;" class="form-group col-md-6">
                               <div class="form-check">
                                 <input class="form-check-input tuecheck" type="checkbox" id="tuecheck">
-                                <label style="-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;" class="form-check-label" for="tuecheck">
+                                <label style="-webkit-touch-callout: none;-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none;  user-select: none;" class="form-check-label" for="tuecheck">
                                   Tuesday
                                 </label>
                               </div>
@@ -278,16 +263,36 @@
                             </td>
                           </tr>
                         </tbody>
-                        
-                      </div>
-                    </div>
                   </table>
 
 
 
 
+                  <label style="margin-top: 20px;" for="inputState">Links</label>
 
+                  <div class="form-row">
+                    <div style="margin: 0;" class="form-group col-md-6" >
+                      <label class="link-label" for="link-fb">Facebook</label>
+                      <input id="link-fb" class="links-input" style="width: 100%" type="text" name="link-fb" placeholder="Paste facebook link...">
+                      <label class="link-label" for="link-tg">Telegram</label>
+                      <input id="link-tg" class="links-input" style="width: 100%" type="text" name="link-tg" placeholder="Paste telegram link...">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label class="link-label" for="link-insta">Instagram</label>
+                      <input id="link-insta" class="links-input" style="width: 100%" type="text" name="link-insta" placeholder="Paste instagram link...">
+                      <label class="link-label" for="link-twitter">Telegram</label>
+                      <input id="link-twitter" class="links-input" style="width: 100%" type="text" name="link-twitter" placeholder="Paste twitter link...">
+                    </div>
+                  </div>
 
+                  <div>
+                    <label for="logo">Logo</label>
+                    <input style="display: block;" type="file" id="logo" name="logo">
+                  </div>
+
+                  <div>
+                    Map
+                  </div>
 
 
                   <div class="form-group">
