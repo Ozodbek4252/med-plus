@@ -32,15 +32,17 @@
                         <thead>
                           <tr>
                             <th> # </th>
-                            <th> First Name </th>
-                            <th> Last Name </th>
+                            <th> Name </th>
+                            <th> Owner </th>
                             <th> Phone </th>
-                            <th> Email </th>
-                            <th> Gender </th>
                             <th> Address </th>
-                            <th> Date Of Birth </th>
+                            <th> Links </th>
+                            <th> Work Days </th>
+                            <th> Likes </th>
+                            <th> Metro </th>
+                            <th> Location </th>
+                            <th> Logo </th>
                             <th> Action </th>
-                            <th> Role </th>
                           </tr>
                         </thead>
 
@@ -72,6 +74,7 @@
                         @endfor
                       </table>
 
+                       
 
                     </div>
                   </div>

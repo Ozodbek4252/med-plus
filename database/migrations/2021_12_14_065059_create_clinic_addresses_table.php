@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateClinicAddressesTable extends Migration
 {
-    /* Run the migrations.
+    /**
+     * Run the migrations.
      *
      * @return void
      */
@@ -17,14 +18,15 @@ class CreateClinicAddressesTable extends Migration
             $table->string('clinic_id');
             $table->string('state')->nullable();
             $table->string('city')->nullable();
-            $table->string('street');
-            $table->string('apartment');
-            $table->string('zip')->default(0);
+            $table->string('street')->nullable();
+            $table->string('apartment')->nullable();
+            $table->string('zip')->nullable();
             $table->timestamps();
         });
     }
 
-    /* Reverse the migrations.
+    /**
+     * Reverse the migrations.
      *
      * @return void
      */
