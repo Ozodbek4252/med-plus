@@ -32,15 +32,13 @@ Route::get('/role/{id}', [AdminController::class, "role"]);
 
 
 
-
-
-
 Route::get('/clinics', [HomeController::class, "clinics"]);
 // Route::get('/profile/{id}', [ProfileController::class, "profile"]);
 Route::get('/completeaccount/{id}', [ProfileController::class, "completeaccount"]);
 Route::post('/updatecompleteaccount/{id}', [ProfileController::class, "updatecompleteaccount"]);
 
 Route::post('/addrole/{id}', [ClinicsController::class, "addrole"]);
+Route::get('/filter', [ClinicsController::class, "filter"]);
 
 
 Route::get('/searchclinics', [ClinicsController::class, "searchclinics"]);

@@ -22,12 +22,12 @@
         <div style="padding-top: 65px; position: relative; top: 60px;">
           <div class="col-lg-12 grid-margin stretch-card">
 
-                <div class="card">
-                  <div class="card-body">
+                <div style="margin-bottom: 150px" class="card">
+                  <div style="" class="card-body">
                     <h4 class="card-title">Users table</h4>
                     </p>
-                    <div class="table-responsive">
-                      <table class="table table-dark">
+                    <div style="margin-bottom: 0px; overflow-x: scroll; width: 92%; margin-bottom: 30px" class="table-responsive">
+                      <table style="margin-bottom: 10px; overflow: scroll; width: 100px" class="table table-dark">
 
                         <thead>
                           <tr>
@@ -46,37 +46,133 @@
                           </tr>
                         </thead>
 
-                        @for ($i=0; $i<count($data); $i++)
-                        @if($data[$i]->usertype!="1")
+                        @for ($i=0; $i<count($clinic); $i++)
                         <tbody>
                           <tr>
-                            <td>{{$num++}}</td>
-                            <td>{{$data[$i]->first_name}}</td>
-                            <td>{{$data[$i]->last_name}}</td>
-                            <td>{{$data[$i]->phone}}</td>
-                            <td>{{$data[$i]->email}}</td>
-                            <td>{{$data[$i]->gender}}</td>
-                            @foreach($users as $user)
-                              @if($data[$i]->id == intval($user->user_id))
-                                <td>{{$user->city}}, {{$user->state}}</td>
+                            <td>{{ $num++ }}</td>
+                            <td>{{ $clinic[$i]->name }}</td>
 
+                            @foreach ($data as $user)
+                              @if($user->id == intval($clinic[$i]->user_id))
+                                <td>{{$user->first_name}} {{$user->last_name}}</td>
                               @endif
                             @endforeach
-                            @if($data[$i]->address==null)
-                                <td></td>
+
+                            <td>{{ $clinic[$i]->phone }}</td>
+
+                            @if($clinic[$i]->address==null)
+                              <td></td>
+                            @else
+                                @foreach ($clinicAddress as $user)
+                                  @if($user->id == intval($clinic[$i]->address))
+                                  <td>
+                                    <ul style="list-style-type: none; margin-bottom: 0; padding-left: 0">
+                                      @if($user->apartment!=null)
+                                        <li style="margin-bottom: 5px">{{$user->apartment}}</li>
+                                      @endif
+
+                                      @if($user->street!=null)
+                                        <li style="margin-bottom: 5px">{{$user->street}}</li>
+                                      @endif
+
+                                      @if($user->city!=null)
+                                        <li style="margin-bottom: 5px">{{$user->city}}</li>
+                                      @endif
+
+                                      @if($user->state!=null)
+                                        <li style="margin-bottom: 5px">{{$user->state}}</li>
+                                      @endif
+
+                                      @if($user->zip!=null)
+                                        <li style="margin-bottom: 5px">{{$user->zip}}</li>
+                                      @endif
+                                    </ul>
+                                    
+                                  </td>
+                                @endif
+                                @endforeach
                             @endif
-                            <td>{{$data[$i]->date_of_birth}}</td>
-                            <td><a href="{{url('/deleteuser', $data[$i]->id)}}">Delete</a></td>
-                            <td><a href="{{url('/role', $data[$i]->id)}}">Role</a></td>
+
+                            @if($clinic[$i]->links==null)
+                              <td></td>
+                            @else
+                                @foreach ($clinicLink as $user)
+                                  @if($user->id == intval($clinic[$i]->links))
+                                  <td>
+                                    <ul style="list-style-type: none; margin-bottom: 0; padding-left: 0">
+                                      @if($user->email!=null)
+                                        <li style="margin-bottom: 5px"><a href="{{$user->email}}">{{$user->email}}</a></li>
+                                      @endif
+
+                                      @if($user->tg!=null)
+                                        <li style="margin-bottom: 5px"><a href="{{$user->tg}}">{{$user->tg}}</a></li>
+                                      @endif
+
+                                      @if($user->fb!=null)
+                                        <li style="margin-bottom: 5px"><a href="{{$user->fb}}">{{$user->fb}}</a></li>
+                                      @endif
+
+                                      @if($user->insta!=null)
+                                        <li style="margin-bottom: 5px"><a href="{{$user->insta}}">{{$user->insta}}</a></li>
+                                      @endif
+
+                                    </ul>
+                                    
+                                  </td>
+                                @endif
+                                @endforeach
+                            @endif
+
+                            @if($clinic[$i]->work_days==null)
+                              <td></td>
+                            @else
+                                @foreach ($clinicWorkDay as $user)
+                                  @if($user->id == intval($clinic[$i]->work_days))
+                                  <td>
+                                    <ul style="list-style-type: none; margin-bottom: 0; padding-left: 0">
+                                      @if($user->mon!=null)
+                                        <li style="margin-bottom: 5px">Mon: {{$user->mon}}</li>
+                                      @endif
+                                      @if($user->tue!=null)
+                                        <li style="margin-bottom: 5px">Tue: {{$user->tue}}</li>
+                                      @endif
+                                      @if($user->wed!=null)
+                                        <li style="margin-bottom: 5px">Wed: {{$user->wed}}</li>
+                                      @endif
+                                      @if($user->thu!=null)
+                                        <li style="margin-bottom: 5px">Thu: {{$user->thu}}</li>
+                                      @endif
+                                      @if($user->fri!=null)
+                                        <li style="margin-bottom: 5px">Fri: {{$user->fri}}</li>
+                                      @endif
+                                      @if($user->sat!=null)
+                                        <li style="margin-bottom: 5px">Sat: {{$user->sat}}</li>
+                                      @endif
+                                      @if($user->sun!=null)
+                                        <li style="margin-bottom: 5px">Sun: {{$user->sun}}</li>
+                                      @endif
+                                    </ul>
+                                  </td>
+                                @endif
+                                @endforeach
+                            @endif
+
+
+
+
+                            <td>{{ $clinic[$i]->likes }}</td>
+                            <td>{{ $clinic[$i]->metro }}</td>
+                            <td>{{ $clinic[$i]->location }}</td>
+                            <td>{{ $clinic[$i]->metro }}</td> <!-- change to logo --> 
+                            
+                            <td><a href="{{url('/clinicEdit', $clinic[$i]->id)}}">Edit</a></td>
                           </tr>
                         </tbody>
-                        @endif
                         @endfor
                       </table>
-
-                       
-
                     </div>
+                      <span>{{$clinic->links()}}</span>
+
                   </div>
                 </div>
 

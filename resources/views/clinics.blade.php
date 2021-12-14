@@ -4,7 +4,35 @@
 <head>
 
   @include('homecss')
+  <style type="text/css">
+        .links-input {
+            margin-bottom: 20px;
+        }
+        .link-label {
+            user-select: none;
+        }
+        .w-5{
+            /*display: none;*/
+            /*color: #666;*/
+            width: 20px;
+        }
+        span nav div {
+            margin-bottom: 15px;
+        }
 
+        span nav div a {
+            color: #fff;
+        }
+
+        .bg-white {
+            background-color: #191c24 !important;
+            background-color: #777 !important;
+        }
+
+        span[aria-current] span {
+            background-color: #99999977 !important;
+        }
+    </style>
 </head>
 
 <body class="sub_page">
@@ -35,7 +63,7 @@
         
         <form method="get" action="{{url('/searchclinics')}}" class="clinics-search-form">
           <input class="search-input" type="search" placeholder="Search clinics..." name="clinics-search">
-          <button class="clinics-search-button" type="submit">Search</button>
+          <button class="clinics-search-button" name="search" type="submit">Search</button>
         </form>
 
 
@@ -114,11 +142,11 @@
           </div>
 
           <div class="result-clinics">
-            <form class="d-flex flex-wrap">
+            <form action="{{url('/filter')}}" method="get" class="d-flex flex-wrap">
               <div class="form-group col-lg-3">
                 <label class="control-label">Режим работы</label>
                 <div>
-                  <select class="course">                    
+                  <select name="one" class="course">                    
                     <option>Все</option>
                     <option value="B.A">Круглосуточно</option>
                     <option value="B.COM">По выходным</option>
@@ -130,7 +158,7 @@
               <div class="form-group col-lg-3">
                 <label class="control-label">Тип клиники</label>
                 <div>
-                  <select class="course">                    
+                  <select name="two" class="course">                    
                     <option>Все</option>
                     <option value="B.A">Государственная</option>
                     <option value="B.COM">Частная</option>
@@ -141,7 +169,7 @@
               <div class="form-group col-lg-3">
                 <label class="control-label">Специализация</label>
                 <div>
-                  <select class="course">                    
+                  <select name="three" class="course">                    
                     <option>Все</option>
                     <option value="B.A">Акушерство</option>
                     <option value="B.COM">Аллергология</option>
@@ -156,7 +184,7 @@
               <div class="form-group col-lg-3">
                 <label class="control-label">С онлайн записью</label>
                 <div>
-                  <select class="course">                    
+                  <select name="four" class="course">                    
                     <option>Все</option>
                     <option value="B.A">Да</option>
                     <option value="B.COM">Нет</option>
@@ -167,7 +195,7 @@
               <div class="form-group col-lg-3">
                 <label class="control-label">Время записи онлайн</label>
                 <div>
-                  <select class="course">                    
+                  <select  name="five" class="course">                    
                     <option>Select</option>
                     <option value="B.A">B.A</option>
                     <option value="B.COM">B.COM</option>
@@ -186,6 +214,8 @@
             </form>
           </div>
 
+
+
           <div  class="card-wrapper">
             <div class="clinics-to-doctors">
               <div class="clinics-route clinics-border">
@@ -196,6 +226,13 @@
               </div>
             </div>
 
+
+
+
+
+
+
+            @for ($i=0; $i<count($clinic); $i++)
             <div class="cards">
               <div class="card">
 
@@ -229,13 +266,32 @@
                   <div class="card-middle">
                     <a href="">
                       Клиника
-                      <b>MShifo</b>
+                      <b>{{ $clinic[$i]->name }}</b>
                     </a>
                     <div class="card-links">
+                      @if($clinic[$i]->links==null)
                       <i class="fab fa-facebook"></i>
                       <i class="fab fa-twitter"></i>
                       <i class="fab fa-telegram"></i>
                       <i class="fab fa-instagram"></i>
+                      @else
+                        @foreach ($clinicLink as $user)
+                          @if($user->id == intval($clinic[$i]->links))
+                              @if($user->fb!=null)
+                                <a href="{{$user->fb}}"><i class="fab fa-facebook"></i></a>
+                              @endif
+                              @if($user->email!=null)
+                                <a href="{{$user->email}}"><i class="fab fa-twitter"></i></a>
+                              @endif
+                              @if($user->tg!=null)
+                                <a href="{{$user->tg}}"><i class="fab fa-telegram"></i></a>
+                              @endif
+                              @if($user->insta!=null)
+                                <a href="{{$user->insta}}"><i class="fab fa-instagram"></i></a>
+                              @endif
+                          @endif
+                        @endforeach
+                      @endif
                     </div>
                   </div>
                 </div>
@@ -244,7 +300,31 @@
                   <div class="card-right">
                     <div class="card-address">
                       <i class="fas fa-map-marker-alt"></i>
-                      <p>Алмазарский район, г. Ташкент, проезд Лабзак, 10 Лабзак, Напротив главного входа парка Локомотив Анхор</p>
+
+                      @if($clinic[$i]->address==null)
+                        <p>Алмазарский район, г. Ташкент, проезд Лабзак, 10 Лабзак, Напротив главного входа парка Локомотив Анхор</p>
+                      @else
+                        @foreach ($clinicAddress as $user)
+                          @if($user->id == intval($clinic[$i]->address))
+                            @if($user->apartment!=null)
+                              {{$user->apartment}}
+                            @endif
+                            @if($user->street!=null)
+                              {{$user->street}}
+                            @endif
+                            @if($user->city!=null)
+                              {{$user->city}}
+                            @endif
+                            @if($user->state!=null)
+                              {{$user->state}}
+                            @endif
+                            @if($user->zip!=null)
+                              {{$user->zip}}
+                            @endif
+                          @endif
+                        @endforeach
+                      @endif
+
                     </div>
                     <div class="card-metro">
                       <i class="fab fa-monero"></i><span>Minor</span>
@@ -252,9 +332,39 @@
                     <div class="card-time">
                       <i class="far fa-clock"></i>
                       <ul>
+                      @if($clinic[$i]->work_days==null)
+                        <li></li>
+                      @else
+                        @foreach ($clinicWorkDay as $user)
+                          @if($user->id == intval($clinic[$i]->work_days))
+                            @if($user->mon!=null)
+                              <li style="line-height: 100%;">Mon: {{$user->mon}}</li>
+                            @endif
+                            @if($user->tue!=null)
+                              <li style="line-height: 100%;">Tue: {{$user->tue}}</li>
+                            @endif
+                            @if($user->wed!=null)
+                              <li style="line-height: 100%;">Wed: {{$user->wed}}</li>
+                            @endif
+                            @if($user->thu!=null)
+                              <li style="line-height: 100%;">Thu: {{$user->thu}}</li>
+                            @endif
+                            @if($user->fri!=null)
+                              <li style="line-height: 100%;">Fri: {{$user->fri}}</li>
+                            @endif
+                            @if($user->sat!=null)
+                              <li style="line-height: 100%;">Sat: {{$user->sat}}</li>
+                            @endif
+                            @if($user->sun!=null)
+                              <li style="line-height: 100%;">Sun: {{$user->sun}}</li>
+                            @endif
+                          @endif
+                        @endforeach
+                      @endif
                         <li>Пн. 09:00 - 18:00</li>
                         <li>Пн. 09:00 - 18:00</li>
                         <li>Пн. 09:00 - 18:00</li>
+
                       </ul>
                     </div>
                     <div class="card-phone">
@@ -272,10 +382,18 @@
                 
               </div>
             </div>
+            @endfor
+            <span>{{$clinic->links()}}</span>
+
+
+
+
+
+
+
+
           </div>
-
         </div>
-
 
 
         <div class="body-right">
