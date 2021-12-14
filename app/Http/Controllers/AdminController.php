@@ -8,6 +8,11 @@ use App\Models\User;
 use App\Models\Address;
 
 
+
+use Illuminate\Support\Facades\DB;
+
+
+
 class AdminController extends Controller
 {
     public function users()
@@ -18,7 +23,23 @@ class AdminController extends Controller
         $address = address::all();
     	$num = 1;
 
-    	return view("admin.users", compact("data", "num", "address"));
+
+
+        // $users = DB::table('users')->get();
+        // $users = DB::table('users')
+        //         ->join('contacts', 'users.id', '=', 'contacts.user_id')
+        //         ->join('orders', 'users.id', '=', 'orders.user_id')
+        //         ->select('users.*', 'contacts.phone', 'orders.price')
+        //         ->get();
+
+        // $users = DB::table('users')->get();
+
+        $users = DB::table('users')
+            ->join('addresses', 'users.address', 'addresses.id')
+            ->select('users.*', 'addresses.*')
+            ->get();
+
+    	return view("admin.users", compact("data", "num", "address", "users"));
     }
 
     public function deleteuser($id)

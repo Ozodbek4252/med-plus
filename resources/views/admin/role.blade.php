@@ -27,7 +27,7 @@
         <div style="padding-top: 65px; position: relative; top: 60px;">
           <div class="col-lg-12 grid-margin stretch-card">
 
-            <div class="card">
+            <div style="margin-bottom: 80px" class="card">
               <div class="card-body">
                 <h4 class="card-title">Clinic</h4>
                 </p>
@@ -61,8 +61,8 @@
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputState">State</label>
-                      <select name="state" id="inputState" class="form-control" required>
-                        <option selected>Choose...</option>
+                      <select name="state" id="inputState" class="form-control" required="">
+                        <option>Choose...</option>
                         <option value="Toshkent">Toshkent</option>
                         <option value="Farg'ona">Farg'ona</option>
                         <option value="Andijon">Andijon</option>

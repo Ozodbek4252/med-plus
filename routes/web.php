@@ -44,3 +44,4 @@ Route::post('/addrole/{id}', [ClinicsController::class, "addrole"]);
 
 
 Route::get('/searchclinics', [ClinicsController::class, "searchclinics"]);
+Route::get('/clinic-table', [ClinicsController::class, "clinicTable"]);

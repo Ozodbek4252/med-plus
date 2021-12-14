@@ -11,6 +11,8 @@ use App\Models\ClinicLink;
 use App\Models\ClinicAddress;
 use App\Models\ClinicWorkDay;
 
+use Illuminate\Support\Facades\DB;
+
 class ClinicsController extends Controller
 {
     public function addrole(Request $request, $id)
@@ -18,7 +20,6 @@ class ClinicsController extends Controller
         $clinic = new clinic;
         $links = new ClinicLink;
         $cl_address = new ClinicAddress;
-        $work_day = new ClinicWorkDay;
 
 
 
@@ -28,9 +29,6 @@ class ClinicsController extends Controller
         $clinic->logo = $request->logo;
         $clinic->save();
 
-        // if($request->fb != null){
-        //     dd('ok');
-        // }
         $links->clinic_id = $clinic->id;
         $links->fb = $request->fb;
         $links->email = $request->email;
@@ -39,7 +37,11 @@ class ClinicsController extends Controller
         $links->save();
 
         $cl_address->clinic_id = $clinic->id;
-        $cl_address->state = $request->state;
+        if($request->state != "Choose...") {
+            $cl_address->state = $request->state;
+        } else {
+            $cl_address->state = null;
+        }
         $cl_address->street = $request->street;
         $cl_address->city = $request->city;
         $cl_address->apartment = $request->apartment;
@@ -47,7 +49,9 @@ class ClinicsController extends Controller
         $cl_address->save();
 
 
-        if($request->mon == 'check' || $request->tue == 'check'){
+        if($request->mon == 'check' || $request->tue == 'check' || $request->wed == 'check'
+             || $request->thu == 'check' || $request->fri == 'check' || $request->sat == 'check' || $request->sun == 'check'){
+            $work_day = new ClinicWorkDay;
             $work_day->clinic_id = $clinic->id;
         }
 
@@ -86,15 +90,19 @@ class ClinicsController extends Controller
             $sun = $request->sunstart.' - '.$request->sunend;
             $work_day->sun = $sun;
         }
-        $work_day->save();
+        if($request->mon == 'check' || $request->tue == 'check' || $request->wed == 'check'
+             || $request->thu == 'check' || $request->fri == 'check' || $request->sat == 'check' || $request->sun == 'check'){
 
-        $clinic->work_days;
+            $work_day->save();
+        $clinic->work_days = $work_day->id;
+        }
+
         $clinic->address = $cl_address->id;
         $clinic->links = $links->id;
         $clinic->save();
 
 
-        return redirect()->back();
+        return redirect('/users');
     }
 
 
@@ -106,15 +114,33 @@ class ClinicsController extends Controller
     	// temporary getting users
     	$data = user::where('first_name', 'LIKE', '%'.$search_text.'%')->get();
     	
-    	// for($e=0; $e<count($data);$e++){
-    	// 	if($data[$e]->name=='admin'){
-    	// 		// unset($data[$e]);
-    	// 		// \array_splice($data, $e-1, 1);
-    	// 	}
-    	// 	echo gettype($data);
-    	// 	echo $data[$e]->name;
-    	// }
     	$num = 1;
     	return view("clinics", compact("data", "num"));
+    }
+
+    public function clinicTable(){
+        $num = 1;
+        $clinic = clinic::all();
+        $clinicLink = clinicLink::all();
+        $clinicAddress = clinicAddress::all();
+        $clinicWorkDay = clinicWorkDay::all();
+
+        
+                
+
+        // $data = User::all();
+        // $address = address::all();
+
+        // $users = DB::table('clinics')
+        //     ->join('clinic_work_days', 'clinics.work_days', 'clinic_work_days.id')
+        //     ->join('clinic_links', 'clinics.links', 'clinic_links.id')
+        //     ->join('clinic_addresses', 'clinics.address', 'clinic_addresses.id')
+        //     ->select('clinics.*', 'clinic_work_days.*', 'clinic_links.*', 'clinic_addresses.*')
+        //     ->get();
+
+
+
+
+        return view("admin.clinicTable", compact("clinic", "num", "clinicLink", "clinicAddress", "clinicWorkDay"));
     }
 }

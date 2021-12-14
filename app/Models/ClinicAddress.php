@@ -11,6 +11,9 @@ class ClinicAddress extends Model
 
     protected $fillable = [
         'state',
-        'city'
+        'city',
+        'street',
+        'apartment',
+        'zip'
     ];
 }
