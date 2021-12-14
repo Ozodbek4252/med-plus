@@ -120,16 +120,14 @@ class ClinicsController extends Controller
 
     public function clinicTable(){
         $num = 1;
-        $clinic = clinic::all();
+        $clinic = clinic::paginate(10);
         $clinicLink = clinicLink::all();
         $clinicAddress = clinicAddress::all();
-        $clinicWorkDay = clinicWorkDay::all();
+        $clinicWorkDay = clinicWorkDay::all(); 
 
-        
-                
-
-        // $data = User::all();
+        $data = User::all();
         // $address = address::all();
+
 
         // $users = DB::table('clinics')
         //     ->join('clinic_work_days', 'clinics.work_days', 'clinic_work_days.id')
@@ -141,6 +139,25 @@ class ClinicsController extends Controller
 
 
 
-        return view("admin.clinicTable", compact("clinic", "num", "clinicLink", "clinicAddress", "clinicWorkDay"));
+        return view("admin.clinicTable", compact("clinic", "num", "clinicLink", "clinicAddress", "clinicWorkDay", "data"));
+    }
+
+    public function filter(Request $request)
+    {
+        $one = $request->one;
+        $two = $request->two;
+        $three = $request->three;
+        $four = $request->four;
+        $five = $request->five;
+
+        $clinic = clinic::paginate(10);
+        $clinicAddress = ClinicAddress::all();
+        $clinicLink = ClinicLink::all();
+        $clinicWorkDay = ClinicWorkDay::all();
+
+        $num=0;
+
+
+        return view('clinics', compact("one", "two", "three", "four", "five", "clinic", "num", "clinicLink", "clinicAddress", "clinicWorkDay"));
     }
 }

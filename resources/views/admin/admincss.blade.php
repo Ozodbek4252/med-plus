@@ -26,4 +26,25 @@
         .link-label {
             user-select: none;
         }
+        .w-5{
+            /*display: none;*/
+            /*color: #666;*/
+            width: 20px;
+        }
+        span nav div {
+            margin-bottom: 15px;
+        }
+
+        span nav div a {
+            color: #fff;
+        }
+
+        .bg-white {
+            background-color: #191c24 !important;
+            background-color: #777 !important;
+        }
+
+        span[aria-current] span {
+            background-color: #99999977 !important;
+        }
     </style>
