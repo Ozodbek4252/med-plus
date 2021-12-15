@@ -17,13 +17,13 @@
   	@include("admin.sidebar")
 
   	<div class="container-fluid page-body-wrapper">
-        @include("admin.navbar");
+        @include("admin.navbar")
 
         <div style="padding-top: 65px; position: relative; top: 60px;">
           <div class="col-lg-12 grid-margin stretch-card">
 
                 <div style="margin-bottom: 150px" class="card">
-                  <div style="" class="card-body">
+                  <div class="card-body">
                     <h4 class="card-title">Users table</h4>
                     </p>
                     <div style="margin-bottom: 0px; overflow-x: scroll; width: 92%; margin-bottom: 30px" class="table-responsive">
@@ -185,7 +185,6 @@
   	@include("admin.adminscript")
   </body>
 </html>
-
 
 
 </body>
