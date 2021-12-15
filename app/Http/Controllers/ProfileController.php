@@ -86,4 +86,10 @@ class ProfileController extends Controller
     	// return view("profile.completeaccount");
     }
 
+    public function viewClinics($id)
+    {
+
+        return view();
+    }
+
 }

@@ -12,8 +12,6 @@
             user-select: none;
         }
         .w-5{
-            /*display: none;*/
-            /*color: #666;*/
             width: 20px;
         }
         span nav div {
@@ -385,43 +383,18 @@
             @endfor
             <span>{{$clinic->links()}}</span>
 
-
-
-
-
-
-
-
           </div>
         </div>
-
-
         <div class="body-right">
           <div class="map">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.9914989890217!2d69.18400971542265!3d41.287289479273426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae898229c628b7%3A0x4d98781957ca36ab!2s7%20Lutfi%20Street%2C%20Tashkent%20100138!5e0!3m2!1sen!2s!4v1639133956960!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
           </div>
-
         </div>
-
-
-
       </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
     </div>
   </section>
-
   <!-- end doctor section -->
 
   
